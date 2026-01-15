@@ -1,0 +1,120 @@
+[2026-01-15 13:49:11] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 13:49:11"}
+[2026-01-15 13:49:16] [INFO] Executive dashboard accessed
+[2026-01-15 13:49:22] [INFO] Executive summary dashboard accessed
+[2026-01-15 13:49:25] [INFO] Alerts dashboard accessed
+[2026-01-15 13:49:25] [WARNING] Anomaly detected | {"type":"revenue_drop","percentage":18.18,"segment":"High-Value"}
+[2026-01-15 13:49:32] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 13:49:32"}
+[2026-01-15 13:49:32] [INFO] Segmentation request | {"type":"gender"}
+[2026-01-15 13:49:57] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 13:49:57"}
+[2026-01-15 13:49:57] [INFO] Export initiated | {"type":"pdf","segmentation":"gender","user_id":1}
+[2026-01-15 13:49:57] [INFO] Export completed successfully | {"export_id":null,"file_path":"exports\/segmentation_gender_2026-01-15_13-49-57.html","record_count":10000}
+[2026-01-15 13:50:00] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 13:50:00"}
+[2026-01-15 13:51:24] [INFO] User logged out
+[2026-01-15 13:52:43] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 13:52:43"}
+[2026-01-15 13:58:50] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 13:58:50"}
+[2026-01-15 13:58:50] [INFO] Segmentation request | {"type":"clv_tier"}
+[2026-01-15 13:58:53] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 13:58:53"}
+[2026-01-15 13:58:53] [INFO] Segmentation request | {"type":"clv_tier"}
+[2026-01-15 13:58:55] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 13:58:55"}
+[2026-01-15 13:58:55] [INFO] Segmentation request | {"type":"clv_tier"}
+[2026-01-15 14:00:35] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:00:35"}
+[2026-01-15 14:00:35] [INFO] Segmentation request | {"type":"clv_tier"}
+[2026-01-15 14:00:38] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:00:38"}
+[2026-01-15 14:00:38] [INFO] Segmentation request | {"type":"clv_tier"}
+[2026-01-15 14:01:49] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:01:49"}
+[2026-01-15 14:01:49] [INFO] Segmentation request | {"type":"clv_tier"}
+[2026-01-15 14:01:50] [INFO] User logged out
+[2026-01-15 14:01:53] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:01:53"}
+[2026-01-15 14:01:58] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:01:58"}
+[2026-01-15 14:01:58] [INFO] Segmentation request | {"type":"gender"}
+[2026-01-15 14:03:16] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:03:16"}
+[2026-01-15 14:03:16] [INFO] Segmentation request | {"type":"gender"}
+[2026-01-15 14:03:20] [INFO] User logged out
+[2026-01-15 14:03:23] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:03:23"}
+[2026-01-15 14:04:39] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:04:39"}
+[2026-01-15 14:04:41] [INFO] Executive dashboard accessed
+[2026-01-15 14:04:44] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:04:44"}
+[2026-01-15 14:04:46] [INFO] Executive summary dashboard accessed
+[2026-01-15 14:04:55] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:04:55"}
+[2026-01-15 14:04:56] [INFO] Alerts dashboard accessed
+[2026-01-15 14:04:56] [WARNING] Anomaly detected | {"type":"revenue_drop","percentage":18.18,"segment":"High-Value"}
+[2026-01-15 14:05:03] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:05:03"}
+[2026-01-15 14:05:04] [INFO] Performance dashboard accessed
+[2026-01-15 14:05:09] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:05:09"}
+[2026-01-15 14:05:12] [INFO] Executive dashboard accessed
+[2026-01-15 14:05:15] [INFO] Performance dashboard accessed
+[2026-01-15 14:05:18] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:05:18"}
+[2026-01-15 14:05:20] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:05:20"}
+[2026-01-15 14:05:20] [INFO] Segmentation request | {"type":"gender"}
+[2026-01-15 14:12:33] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:12:33"}
+[2026-01-15 14:12:33] [INFO] Segmentation request | {"type":"gender"}
+[2026-01-15 14:14:50] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:14:50"}
+[2026-01-15 14:14:54] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:14:54"}
+[2026-01-15 14:14:54] [INFO] Segmentation request | {"type":"region"}
+[2026-01-15 14:17:59] [INFO] User logged out
+[2026-01-15 14:18:02] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:18:02"}
+[2026-01-15 14:22:55] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:22:55"}
+[2026-01-15 14:22:56] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:22:56"}
+[2026-01-15 14:22:56] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:22:56"}
+[2026-01-15 14:23:55] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:23:55"}
+[2026-01-15 14:23:57] [INFO] User logged out
+[2026-01-15 14:23:59] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:23:59"}
+[2026-01-15 14:26:50] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:26:50"}
+[2026-01-15 14:27:31] [INFO] Executive dashboard accessed
+[2026-01-15 14:27:35] [INFO] Executive summary dashboard accessed
+[2026-01-15 14:27:40] [INFO] User logged out
+[2026-01-15 14:27:44] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:27:44"}
+[2026-01-15 14:27:45] [INFO] Executive dashboard accessed
+[2026-01-15 14:27:46] [INFO] Executive summary dashboard accessed
+[2026-01-15 14:27:48] [INFO] User logged out
+[2026-01-15 14:27:51] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:27:51"}
+[2026-01-15 14:27:52] [INFO] Alerts dashboard accessed
+[2026-01-15 14:27:52] [WARNING] Anomaly detected | {"type":"revenue_drop","percentage":18.18,"segment":"High-Value"}
+[2026-01-15 14:27:54] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:27:54"}
+[2026-01-15 14:27:56] [INFO] Alerts dashboard accessed
+[2026-01-15 14:27:56] [WARNING] Anomaly detected | {"type":"revenue_drop","percentage":18.18,"segment":"High-Value"}
+[2026-01-15 14:28:00] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:28:00"}
+[2026-01-15 14:28:01] [INFO] Executive summary dashboard accessed
+[2026-01-15 14:28:02] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:28:02"}
+[2026-01-15 14:28:03] [INFO] Performance dashboard accessed
+[2026-01-15 14:28:05] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:28:05"}
+[2026-01-15 14:28:06] [INFO] Executive dashboard accessed
+[2026-01-15 14:29:48] [INFO] Executive summary dashboard accessed
+[2026-01-15 14:29:50] [INFO] User logged out
+[2026-01-15 14:29:52] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:29:52"}
+[2026-01-15 14:29:54] [INFO] Executive dashboard accessed
+[2026-01-15 14:29:55] [INFO] Executive summary dashboard accessed
+[2026-01-15 14:29:58] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:29:58"}
+[2026-01-15 14:29:59] [INFO] Alerts dashboard accessed
+[2026-01-15 14:29:59] [WARNING] Anomaly detected | {"type":"revenue_drop","percentage":18.18,"segment":"High-Value"}
+[2026-01-15 14:30:00] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:30:00"}
+[2026-01-15 14:30:02] [INFO] Performance dashboard accessed
+[2026-01-15 14:31:06] [INFO] User logged out
+[2026-01-15 14:31:09] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:31:09"}
+[2026-01-15 14:31:11] [INFO] Executive summary dashboard accessed
+[2026-01-15 14:31:14] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:31:14"}
+[2026-01-15 14:31:15] [INFO] Alerts dashboard accessed
+[2026-01-15 14:31:15] [WARNING] Anomaly detected | {"type":"revenue_drop","percentage":18.18,"segment":"High-Value"}
+[2026-01-15 14:31:32] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:31:32"}
+[2026-01-15 14:32:57] [INFO] Executive dashboard accessed
+[2026-01-15 14:32:58] [INFO] Executive summary dashboard accessed
+[2026-01-15 14:32:59] [INFO] User logged out
+[2026-01-15 14:33:02] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:33:02"}
+[2026-01-15 14:33:04] [INFO] Alerts dashboard accessed
+[2026-01-15 14:33:04] [WARNING] Anomaly detected | {"type":"revenue_drop","percentage":18.18,"segment":"High-Value"}
+[2026-01-15 14:33:11] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:33:11"}
+[2026-01-15 14:33:14] [INFO] Performance dashboard accessed
+[2026-01-15 14:33:15] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:33:15"}
+[2026-01-15 14:33:38] [INFO] User logged out
+[2026-01-15 14:36:45] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:36:45"}
+[2026-01-15 14:36:47] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:36:47"}
+[2026-01-15 14:36:47] [INFO] Segmentation request | {"type":"region"}
+[2026-01-15 14:36:50] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:36:50"}
+[2026-01-15 14:36:50] [INFO] Export initiated | {"type":"csv","segmentation":"region","user_id":1}
+[2026-01-15 14:36:50] [INFO] Export completed successfully | {"export_id":null,"file_path":"exports\/segmentation_region_2026-01-15_14-36-50.csv","record_count":10000}
+[2026-01-15 14:36:54] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:36:54"}
+[2026-01-15 14:36:54] [INFO] Export initiated | {"type":"pdf","segmentation":"region","user_id":1}
+[2026-01-15 14:36:54] [INFO] Export completed successfully | {"export_id":null,"file_path":"exports\/segmentation_region_2026-01-15_14-36-54.html","record_count":10000}
+[2026-01-15 14:38:26] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:38:26"}
+[2026-01-15 14:38:32] [INFO] User accessed main dashboard | {"timestamp":"2026-01-15 14:38:32"}
+[2026-01-15 14:38:32] [INFO] Segmentation request | {"type":"clv_tier"}
