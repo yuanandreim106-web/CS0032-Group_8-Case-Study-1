@@ -444,7 +444,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <canvas id="mainChart" width="400" height="200"></canvas>
                 </div>
                 <div class="col-md-4">
-                    <canvas id="pieChart" width="200" height="200"></canvas>
+                    <canvas id="doughnutChart" width="200" height="200"></canvas>
                 </div>
             </div>
 
@@ -549,58 +549,104 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Main Bar/Line Chart
                 const ctx1 = document.getElementById('mainChart').getContext('2d');
-                const chartType = (segmentationType === 'age_group' || segmentationType === 'income_bracket') ? 'line' : 'bar';
 
+                // Default settings (Bar Chart)
+                let chartType = 'bar';
+                let bgColors = 'rgba(54, 162, 235, 0.6)'; // Default Blue
+                let borderColors = 'rgba(54, 162, 235, 1)';
+                let chartOptions = {
+                    indexAxis: 'x',
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Customer Distribution by ' + segmentationType.replace('_', ' ').toUpperCase()
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                };
+
+                // Logic to switch chart types based on segmentation
+                if (segmentationType === 'region') {
+                    chartOptions.indexAxis = 'y'; // Switch to Horizontal
+                } else if (segmentationType === 'purchase_tier') {
+                    // Switch to Polar Area Chart
+                    chartType = 'polarArea';
+
+                    // Distinct colors for tiers
+                    bgColors = [
+                        'rgba(255, 99, 132, 0.7)', // Red
+                        'rgba(255, 205, 86, 0.7)', // Yellow
+                        'rgba(75, 192, 192, 0.7)' // Green
+                    ];
+                    borderColors = '#ffffff'; // White borders look better on Polar
+
+                    // Polar specific options
+                    chartOptions = {
+                        responsive: true,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Spending Power Distribution'
+                            },
+                            legend: {
+                                position: 'right',
+                                display: true
+                            }
+                        },
+                        scales: {
+                            r: {
+                                ticks: {
+                                    backdropColor: 'transparent',
+                                    z: 1
+                                }
+                            }
+                        }
+                    };
+                } else if (segmentationType === 'age_group' || segmentationType === 'income_bracket') {
+                    chartType = 'line';
+                    bgColors = 'rgba(54, 162, 235, 0.2)';
+                }
+
+                // Initialize Main Chart
                 new Chart(ctx1, {
                     type: chartType,
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: '<?= ucfirst(str_replace('_', ' ', array_keys($results[0])[1])) ?>',
+                            label: 'Customer Count',
                             data: data,
-                            backgroundColor: chartType === 'bar' ? 'rgba(54, 162, 235, 0.6)' : 'rgba(54, 162, 235, 0.2)',
-                            borderColor: 'rgba(54, 162, 235, 1)',
-                            borderWidth: 2,
-                            fill: chartType === 'line'
+                            backgroundColor: bgColors,
+                            borderColor: borderColors,
+                            borderWidth: 1,
+                            fill: (chartType === 'line')
                         }]
                     },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: 'Customer Distribution by <?= ucfirst(str_replace('_', ' ', $segmentationType)) ?>'
-                            },
-                            legend: {
-                                display: true
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
+                    options: chartOptions
                 });
 
-                // Pie Chart for Distribution
-                const ctx2 = document.getElementById('pieChart').getContext('2d');
-                const colors = [
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(54, 162, 235, 0.8)',
-                    'rgba(255, 206, 86, 0.8)',
-                    'rgba(75, 192, 192, 0.8)',
-                    'rgba(153, 102, 255, 0.8)',
-                    'rgba(255, 159, 64, 0.8)'
+                // --- 3. Initialize Doughnut Chart (Side Chart) ---
+                const ctx2 = document.getElementById('doughnutChart').getContext('2d');
+                const doughnutColors = [
+                    'rgba(255, 99, 132, 0.8)', 'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 206, 86, 0.8)', 'rgba(75, 192, 192, 0.8)',
+                    'rgba(153, 102, 255, 0.8)', 'rgba(255, 159, 64, 0.8)'
                 ];
 
                 new Chart(ctx2, {
-                    type: 'pie',
+                    type: 'doughnut',
                     data: {
                         labels: labels,
                         datasets: [{
                             data: data,
-                            backgroundColor: colors.slice(0, labels.length),
+                            backgroundColor: doughnutColors.slice(0, labels.length),
                             borderWidth: 2,
                             borderColor: '#fff'
                         }]

@@ -205,7 +205,7 @@ class SegmentationExporter
             ],
             'age_group' => [
                 'customer_id' => 'c.customer_id',
-                'age_group' => 'c.age_group',
+                'age_group' => "CASE WHEN c.age BETWEEN 18 AND 25 THEN '18-25' WHEN c.age BETWEEN 26 AND 40 THEN '26-40' WHEN c.age BETWEEN 41 AND 60 THEN '41-60' ELSE '61+' END",
                 'age' => 'c.age',
                 'income' => 'c.income',
                 'purchase_amount' => 'c.purchase_amount',
@@ -214,7 +214,7 @@ class SegmentationExporter
             ],
             'income_bracket' => [
                 'customer_id' => 'c.customer_id',
-                'income_bracket' => 'c.income_bracket',
+                'income_bracket' => "CASE WHEN c.income < 30000 THEN 'Low Income (<30k)' WHEN c.income BETWEEN 30000 AND 70000 THEN 'Middle Income (30k-70k)' ELSE 'High Income (>70k)' END",
                 'income' => 'c.income',
                 'purchase_amount' => 'c.purchase_amount',
                 'age' => 'c.age',
@@ -223,7 +223,7 @@ class SegmentationExporter
             ],
             'purchase_tier' => [
                 'customer_id' => 'c.customer_id',
-                'purchase_tier' => 'c.purchase_tier',
+                'purchase_tier' => "CASE WHEN c.purchase_amount < 1000 THEN 'Low Spender (<1k)' WHEN c.purchase_amount BETWEEN 1000 AND 3000 THEN 'Medium Spender (1k-3k)' ELSE 'High Spender (>3k)' END",
                 'purchase_amount' => 'c.purchase_amount',
                 'income' => 'c.income',
                 'age' => 'c.age',
@@ -317,9 +317,7 @@ class SegmentationExporter
             case 'csv':
                 return $this->generateCSV();
             case 'pdf':
-                return $this->generateHTML(); // Fallback to HTML
-            case 'excel':
-                return $this->generateHTML(); // Fallback to HTML
+                return $this->generateHTML(); // Generate HTML for PDF conversion
             default:
                 throw new Exception("Unsupported export type");
         }
@@ -514,8 +512,101 @@ class SegmentationExporter
                     $summary .= "<tr><td>{$tier} Avg CLV</td><td>$" . number_format($avgCLV, 2) . "</td></tr>";
                 }
             }
+        } elseif ($this->segmentationType === 'age_group') {
+            $ageSummary = [];
+            $ageOrder = ['18-25', '26-40', '41-60', '61+'];
+
+            foreach ($this->data as $row) {
+                $ageGroup = $row['age_group'] ?? 'Unknown';
+
+                if (!isset($ageSummary[$ageGroup])) {
+                    $ageSummary[$ageGroup] = [
+                        'count' => 0,
+                        'total_income' => 0,
+                        'total_purchase' => 0
+                    ];
+                }
+
+                $ageSummary[$ageGroup]['count']++;
+                $ageSummary[$ageGroup]['total_income'] += $row['income'] ?? 0;
+                $ageSummary[$ageGroup]['total_purchase'] += $row['purchase_amount'] ?? 0;
+            }
+
+            foreach ($ageOrder as $ageGroup) {
+                if (isset($ageSummary[$ageGroup])) {
+                    $data = $ageSummary[$ageGroup];
+                    $avgIncome = $data['count'] > 0 ? $data['total_income'] / $data['count'] : 0;
+                    $avgPurchase = $data['count'] > 0 ? $data['total_purchase'] / $data['count'] : 0;
+
+                    $summary .= "<tr><td>Age Group {$ageGroup} Customers</td><td>{$data['count']}</td></tr>";
+                    $summary .= "<tr><td>Age Group {$ageGroup} Avg Income</td><td>$" . number_format($avgIncome, 2) . "</td></tr>";
+                    $summary .= "<tr><td>Age Group {$ageGroup} Avg Purchase</td><td>$" . number_format($avgPurchase, 2) . "</td></tr>";
+                }
+            }
+        } elseif ($this->segmentationType === 'income_bracket') {
+            $incomeSummary = [];
+            $incomeOrder = ['Low Income (<30k)', 'Middle Income (30k-70k)', 'High Income (>70k)'];
+
+            foreach ($this->data as $row) {
+                $bracket = $row['income_bracket'] ?? 'Unknown';
+
+                if (!isset($incomeSummary[$bracket])) {
+                    $incomeSummary[$bracket] = [
+                        'count' => 0,
+                        'total_income' => 0,
+                        'total_purchase' => 0
+                    ];
+                }
+
+                $incomeSummary[$bracket]['count']++;
+                $incomeSummary[$bracket]['total_income'] += $row['income'] ?? 0;
+                $incomeSummary[$bracket]['total_purchase'] += $row['purchase_amount'] ?? 0;
+            }
+
+            foreach ($incomeOrder as $bracket) {
+                if (isset($incomeSummary[$bracket])) {
+                    $data = $incomeSummary[$bracket];
+                    $avgIncome = $data['count'] > 0 ? $data['total_income'] / $data['count'] : 0;
+                    $avgPurchase = $data['count'] > 0 ? $data['total_purchase'] / $data['count'] : 0;
+
+                    $summary .= "<tr><td>{$bracket} Customers</td><td>{$data['count']}</td></tr>";
+                    $summary .= "<tr><td>{$bracket} Avg Income</td><td>$" . number_format($avgIncome, 2) . "</td></tr>";
+                    $summary .= "<tr><td>{$bracket} Avg Purchase</td><td>$" . number_format($avgPurchase, 2) . "</td></tr>";
+                }
+            }
+        } elseif ($this->segmentationType === 'purchase_tier') {
+            $purchaseSummary = [];
+            $purchaseOrder = ['Low Spender (<1k)', 'Medium Spender (1k-3k)', 'High Spender (>3k)'];
+
+            foreach ($this->data as $row) {
+                $tier = $row['purchase_tier'] ?? 'Unknown';
+
+                if (!isset($purchaseSummary[$tier])) {
+                    $purchaseSummary[$tier] = [
+                        'count' => 0,
+                        'total_income' => 0,
+                        'total_purchase' => 0
+                    ];
+                }
+
+                $purchaseSummary[$tier]['count']++;
+                $purchaseSummary[$tier]['total_income'] += $row['income'] ?? 0;
+                $purchaseSummary[$tier]['total_purchase'] += $row['purchase_amount'] ?? 0;
+            }
+
+            foreach ($purchaseOrder as $tier) {
+                if (isset($purchaseSummary[$tier])) {
+                    $data = $purchaseSummary[$tier];
+                    $avgIncome = $data['count'] > 0 ? $data['total_income'] / $data['count'] : 0;
+                    $avgPurchase = $data['count'] > 0 ? $data['total_purchase'] / $data['count'] : 0;
+
+                    $summary .= "<tr><td>{$tier} Customers</td><td>{$data['count']}</td></tr>";
+                    $summary .= "<tr><td>{$tier} Avg Income</td><td>$" . number_format($avgIncome, 2) . "</td></tr>";
+                    $summary .= "<tr><td>{$tier} Avg Purchase</td><td>$" . number_format($avgPurchase, 2) . "</td></tr>";
+                }
+            }
         } else {
-            // Basic summary for other segmentations
+            // Basic summary for other segmentations (gender, region)
             $totalRecords = count($this->data);
             $totalIncome = 0;
             $totalPurchase = 0;
